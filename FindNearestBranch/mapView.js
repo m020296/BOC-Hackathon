@@ -27,7 +27,6 @@ function initMap()
 	  center: {lat: 22.31552, lng: 114.16769},
 	  zoom: 13
 	});
-
 	var infoWindow = new google.maps.InfoWindow({map: map});
 	var pos =
 	{
@@ -46,8 +45,8 @@ function initMap()
 			};
 			
 			// Debug
-			pos = {lat: 22.262006, lng: 114.132593};
-			dem = true;
+			//pos = {lat: 22.259609, lng:114.132728};
+			dem = false;
 
 			marker = new google.maps.Marker(
 			{
@@ -56,7 +55,7 @@ function initMap()
 	      	});
 	      	marker.setIcon('blue-dot-30.png');
 			map.setCenter(pos);
-			smoothZoom(map, 15, map.getZoom());
+			smoothZoom(map, 17, map.getZoom());
 			const promise = new Promise(function(resolve, reject){
 				showNearestBranch(pos.lat, pos.lng, dem);
 				resolve(1);
@@ -102,12 +101,12 @@ function smoothZoom (map, max, cnt)
 
 function showNearestBranch(lat, lng, dem)
 {
-	var min = [999, 999, 999, 999, 999];
-	var minPos = [0, 0, 0, 0, 0];
+	var min = [999, 999, 999];
+	var minPos = [0, 0, 0];
 	var minMax = 999;
 	var minMaxPos = 0;
-	var branchLat = [0, 0, 0, 0, 0];
-	var branchLng = [0, 0, 0, 0, 0];
+	var branchLat = [0, 0, 0];
+	var branchLng = [0, 0, 0];
 	var markerArray = [];
 	for (i = 0; i < branchName.length; i++)
 	{
@@ -143,21 +142,10 @@ function showNearestBranch(lat, lng, dem)
 
 	if (dem)
 	{
-		/*minPos[2] = 3;
+		minPos[2] = 3;
 		nearestBranchName[2] = "Kennedy Town Branch";
 		branchLat[2] = 22.2835392;
-		branchLng[2] = 114.129382;*/
-		
-		minPos[0] = 2;
-		nearestBranchName[0] = "Shek Tong Tsui Branch";
-		branchLat[0] = 22.2862301;
-		branchLng[0] = 114.1345169;
-		
-		minPos[2] = 11;
-		nearestBranchName[2] = "Western District Branch";
-		branchLat[2] = 22.28681066270472;
-		branchLng[2] = 114.13728140294552;
-		
+		branchLng[2] = 114.129382;
 	}
 
 	for(i = 0; i < min.length; i++)
@@ -177,12 +165,7 @@ function getNearestBranchName()
 	
 	if (isReady)
 	{
-		for (var i = 0; i < nearestBranchName.length; i++)
-		{
-			document.getElementById("nearestBranchName").innerHTML += ("<option value=\"" + nearestBranchName[i] + "\">" + nearestBranchName[i]
-				+ "</option>");
-		}
-		
+		document.getElementById("3nearestBranchName").innerHTML = nearestBranchName;
 	}
 }
 

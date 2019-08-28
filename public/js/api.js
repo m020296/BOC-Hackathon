@@ -64,6 +64,7 @@ var Api = (function() {
 		  }//(leave the current webpage)*/
 		  
 		 Api.setResponsePayload(http.responseText);
+     //window.scrollTo(0, document.getElementById('scrollingChat').clientHeight;);
       }
     };
 
